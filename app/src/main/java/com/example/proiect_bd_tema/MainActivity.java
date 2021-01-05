@@ -13,7 +13,8 @@ import android.widget.Button;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private Button btnLogin = findViewById(R.id.btn_login);
+    private Button btnLogin;
+    private  Button btnCreateAccount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,17 +32,29 @@ public class MainActivity extends AppCompatActivity {
        Log.v("countries_from_dc", countries.toString());
         writePreferences();
         readPreferences();
+       initComponent();
+
+
+    }
+    private void initComponent(){
+        btnLogin=findViewById(R.id.btn_login);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Login.class );
                 startActivity(intent);
+                //hei hei
             }
         });
-
-
+        btnCreateAccount=findViewById(R.id.btn_createAcc);
+        btnCreateAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CreateAccount.class );
+                startActivity(intent);
+            }
+        });
     }
-
     private void writePreferences() {
         SharedPreferences preferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
