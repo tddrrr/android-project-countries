@@ -70,7 +70,7 @@
         android:layout_margin="50dp"
         android:layout_marginTop="100dp"
         android:background="@color/backColor"
-        android:text="Button"
+        android:text="@string/ok"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
