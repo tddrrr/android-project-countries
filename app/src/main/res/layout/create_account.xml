@@ -37,8 +37,8 @@
             android:id="@+id/create_acc_tied_firstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#3C3F41"
             android:hint="@string/firstName"
-            android:background="#7E67CC6C"
             android:textColor="#FFFFFF" />
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -1,7 +1,11 @@
 <resources>
-    <string name="app_name">Info Tari</string>
+    <string name="app_name">Proiect Android</string>
     <string name="welcome">Welcome</string>
     <string name="login">Log In</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
+    <string name="createNewAcc">Create New Account</string>
+    <string name="ok">OK</string>
+    <string name="lastName">Last Name</string>
+    <string name="firstName">First Name</string>
 </resources>
