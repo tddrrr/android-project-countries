@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Info Tari</string>
+    <string name="welcome">Welcome</string>
+    <string name="login">Log In</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+</resources>
