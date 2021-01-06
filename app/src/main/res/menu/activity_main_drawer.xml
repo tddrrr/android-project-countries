@@ -5,8 +5,16 @@
     <group android:checkableBehavior="single">
         <!-- adaugati <item> pentru fiecare optiune pe care o doriti in meniul lateral-->
         <item
-            android:id="@+id/main_nav_home"
-            android:icon="@android:drawable/ic_menu_camera"
+            android:id="@+id/main_nav_profil"
+            android:icon="@drawable/ic_baseline_assignment_ind_24"
             android:title="@string/main_nav_home_title" />
+        <item
+            android:id="@+id/main_nav_test"
+            android:icon="@drawable/ic_baseline_ballot_24"
+            android:title="@string/menu_test" />
+        <item
+            android:id="@+id/main_nav_score"
+            android:icon="@drawable/ic_baseline_score_24"
+            android:title="@string/menu_scor" />
     </group>
 </menu>
