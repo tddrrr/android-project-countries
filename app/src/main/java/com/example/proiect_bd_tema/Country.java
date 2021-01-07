@@ -12,14 +12,14 @@ public class Country {
     private String capital;
     private String language;
     private String currency;
-    private String president;
+    private String systemOfGovernment;
 
-    public Country(String name, String capital, String language, String currency, String president) {
+    public Country(String name, String capital, String language, String currency, String systemOfGovernment) {
         this.name = name;
         this.capital = capital;
         this.language = language;
         this.currency = currency;
-        this.president = president;
+        this.systemOfGovernment = systemOfGovernment;
     }
 
     public int getId() {
@@ -62,11 +62,11 @@ public class Country {
         this.currency = currency;
     }
 
-    public String getPresident() {
-        return president;
+    public String getSystemOfGovernment() {
+        return systemOfGovernment;
     }
 
-    public void setPresident(String president) {
-        this.president = president;
+    public void setSystemOfGovernment(String systemOfGovernment) {
+        this.systemOfGovernment = systemOfGovernment;
     }
 }

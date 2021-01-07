@@ -12,17 +12,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import com.example.proiect_bd_tema.asyncTask.AsyncTaskRunner;
+import com.example.proiect_bd_tema.asyncTask.Callback;
 import com.example.proiect_bd_tema.fragmente.FragmentProfil;
+import com.example.proiect_bd_tema.network.HttpManager;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Callable;
 
 public class MainMenu extends AppCompatActivity {
     private DrawerLayout drawerLayout; // container ul din activity main xml -> responsabil cu managementul meniului lateral
     private NavigationView navigationView;
     private Fragment currentFragment;
+    private List<Country> countries = new ArrayList<>();
+    private AsyncTaskRunner asyncTaskRunner = new AsyncTaskRunner();
+    private static final String URL_COUNTRIES = "https://api.mocki.io/v1/f6024002";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+        getCountriesFromJSON();
         configNavigation();
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -60,6 +72,20 @@ public class MainMenu extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    private void getCountriesFromJSON() {
+        Callable<String> asyncOperation = new HttpManager(URL_COUNTRIES); //http manager implements callable deci il putem socoti ca si callable
+        //am definit op asincrona, facem callbackul
+        Callback<String> mainThreadOperation = new Callback<String>() {
+            @Override
+            public void runResultOnUiTread(String result) { //am intrat in activitate
+                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                countries.addAll(CountryJSONParser.fromJSON(result));
+//                notifyAdapter();
+            }
+        };
+        asyncTaskRunner.executeAsync(asyncOperation, mainThreadOperation);
     }
 
     private void configNavigation() {
