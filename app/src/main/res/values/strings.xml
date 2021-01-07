@@ -20,4 +20,7 @@
     <string name="menu_test">Testeaza Cunostintele</string>
     <string name="menu_scor">Top</string>
     <string name="main_nav_home_title">Profil</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="info">Nume Prenume</string>
 </resources>

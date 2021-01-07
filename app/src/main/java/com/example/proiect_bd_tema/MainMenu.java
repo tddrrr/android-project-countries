@@ -10,12 +10,15 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
+import com.example.proiect_bd_tema.fragmente.FragmentProfil;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainMenu extends AppCompatActivity {
     private DrawerLayout drawerLayout; // container ul din activity main xml -> responsabil cu managementul meniului lateral
     private NavigationView navigationView;
+    private Fragment currentFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,7 @@ public class MainMenu extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.main_nav_profil){
                     //am dat click pe home
+                    currentFragment = new FragmentProfil();
                     Toast.makeText(getApplicationContext(),
                             "Profil",
                             Toast.LENGTH_LONG).show();
@@ -42,6 +46,7 @@ public class MainMenu extends AppCompatActivity {
                             "Show score",
                             Toast.LENGTH_LONG).show();
                 }
+                    openFragment();
                     drawerLayout.closeDrawer(GravityCompat.START); // pentru ca atunci cand selectam sa se inchida meniul
                 return true;
             }
@@ -60,5 +65,12 @@ public class MainMenu extends AppCompatActivity {
                 R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle); // aici este atasata dechiderea meniului lateral
         actionBarDrawerToggle.syncState(); // realizeaza rasucirea burger-ului
+    }
+
+    private void openFragment(){
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_frame_container,currentFragment)
+                .commit();
     }
 }
