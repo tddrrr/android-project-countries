@@ -34,14 +34,23 @@ public class MainMenu extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "Profil",
                             Toast.LENGTH_LONG).show();
+                }else
+                    if (item.getItemId() == R.id.main_nav_invata){
+                    //am dat click pe home
+                    currentFragment = new FragmentProfil();
+                    Toast.makeText(getApplicationContext(),
+                            "Invata",
+                            Toast.LENGTH_LONG).show();
                 }
                 else if (item.getItemId() == R.id.main_nav_test){
                     //am dat click pe home
+                    currentFragment = new FragmentProfil();
                     Toast.makeText(getApplicationContext(),
                             "Test",
                             Toast.LENGTH_LONG).show();
                 }
                     else{
+                    currentFragment = new FragmentProfil();
                     Toast.makeText(getApplicationContext(),
                             "Show score",
                             Toast.LENGTH_LONG).show();
@@ -65,12 +74,14 @@ public class MainMenu extends AppCompatActivity {
                 R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle); // aici este atasata dechiderea meniului lateral
         actionBarDrawerToggle.syncState(); // realizeaza rasucirea burger-ului
+        currentFragment = new FragmentProfil(); // putem inlocui cu un mesaj de bun venit
+        openFragment();
     }
 
     private void openFragment(){
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.main_frame_container,currentFragment)
+                .replace(R.id.main_frame_container,currentFragment) // aici pot fi oricate metode de replace
                 .commit();
     }
 }
