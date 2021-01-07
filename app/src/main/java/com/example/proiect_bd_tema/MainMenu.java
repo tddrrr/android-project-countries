@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.proiect_bd_tema.asyncTask.AsyncTaskRunner;
 import com.example.proiect_bd_tema.asyncTask.Callback;
+import com.example.proiect_bd_tema.fragmente.FragmentInvatare;
 import com.example.proiect_bd_tema.fragmente.FragmentProfil;
 import com.example.proiect_bd_tema.network.HttpManager;
 import com.google.android.material.navigation.NavigationView;
@@ -49,7 +50,7 @@ public class MainMenu extends AppCompatActivity {
                 }else
                     if (item.getItemId() == R.id.main_nav_invata){
                     //am dat click pe home
-                    currentFragment = new FragmentProfil();
+                    currentFragment = FragmentInvatare.newInstance((ArrayList<Country>) countries);
                     Toast.makeText(getApplicationContext(),
                             "Invata",
                             Toast.LENGTH_LONG).show();

@@ -1,11 +1,14 @@
 package com.example.proiect_bd_tema;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 //import java.sql.Struct;
 @Entity(tableName = "countries")
-public class Country {
+public class Country implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
@@ -21,6 +24,38 @@ public class Country {
         this.currency = currency;
         this.systemOfGovernment = systemOfGovernment;
     }
+
+    protected Country(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        capital = in.readString();
+        language = in.readString();
+        currency = in.readString();
+        systemOfGovernment = in.readString();
+    }
+
+    @Override
+    public String toString() {
+        return "Country{" +
+                ", name='" + name + '\'' +
+                ", capital='" + capital + '\'' +
+                ", language='" + language + '\'' +
+                ", currency='" + currency + '\'' +
+                ", systemOfGovernment='" + systemOfGovernment + '\'' +
+                '}';
+    }
+
+    public static final Creator<Country> CREATOR = new Creator<Country>() {
+        @Override
+        public Country createFromParcel(Parcel in) {
+            return new Country(in);
+        }
+
+        @Override
+        public Country[] newArray(int size) {
+            return new Country[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -68,5 +103,20 @@ public class Country {
 
     public void setSystemOfGovernment(String systemOfGovernment) {
         this.systemOfGovernment = systemOfGovernment;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+//        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeString(capital);
+        dest.writeString(language);
+        dest.writeString(currency);
+        dest.writeString(systemOfGovernment);
     }
 }
