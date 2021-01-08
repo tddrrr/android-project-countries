@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">Proiect Android</string>
     <string name="welcome">Welcome</string>
-    <string name="login">Log In</string>
+    <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="createNewAcc">Create New Account</string>
-    <string name="ok">OK</string>
+    <string name="ok">Create</string>
     <string name="lastName">Last Name</string>
     <string name="firstName">First Name</string>
     <string name="title_activity_main_menu">Proiect Android</string>
@@ -32,4 +32,6 @@
     <string name="system_of_government">System of Government</string>
     <string name="language">language</string>
     <string name="lv_row_default_value">-</string>
+    <string name="enter_credentials">Enter your credentials</string>
+    <string name="invalid_email">Your email is invalid</string>
 </resources>
