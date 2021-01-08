@@ -1,22 +1,33 @@
 package com.example.proiect_bd_tema;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.proiect_bd_tema.asyncTask.AsyncTaskRunner;
+import com.example.proiect_bd_tema.asyncTask.Callback;
+
 import org.w3c.dom.Text;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.zip.Inflater;
 
 public class CountryAdapter extends ArrayAdapter<Country>{ //adapter doar pt tipul de liste country
     private Context context;
+    private AsyncTaskRunner asyncTaskRunner = new AsyncTaskRunner();
     private int resource;
     private List<Country> countries;
     private LayoutInflater inflater;
@@ -41,9 +52,31 @@ public class CountryAdapter extends ArrayAdapter<Country>{ //adapter doar pt tip
             addLanguage(view, country.getLanguage());
             addGovernment(view, country.getSystemOfGovernment());
             addPopulation(view, country.getPopulation());
-
+            getImageFromURL(view, country.getFlagURL());
         }
         return view;
+    }
+
+    private void getImageFromURL(final View view, final String flagUrl) {
+        Callable<Bitmap> callable = new Callable<Bitmap>() {
+            @Override
+            public Bitmap call() throws Exception {
+                URL url = new URL(flagUrl);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                InputStream in = connection.getInputStream();
+                Bitmap bitmap = BitmapFactory.decodeStream(in);
+                return bitmap;
+            }
+        };
+        asyncTaskRunner.executeAsync(callable, new Callback<Bitmap>() {
+            @Override
+            public void runResultOnUiTread(Bitmap result) {
+                if(result != null){
+                    ImageView imageView = view.findViewById(R.id.lv_row_flag);
+                    imageView.setImageBitmap(result);
+                }
+            }
+        });
     }
 
     //metode
