@@ -31,8 +31,9 @@ public class CountryJSONParser {
             String currency = object.getString("currency");
             String language = object.getString("language");
             String systemOfGovernment = object.getString("systemOfGovernment");
+            String population = object.getString("pop");
             //imi citesc atributele din json si fac un obiect nou
-            Country country = new Country(name, capital, currency, language, systemOfGovernment);
+            Country country = new Country(name, capital, currency, language, systemOfGovernment, population);
             //adaug obiectul la lista
             results.add(country);
         }

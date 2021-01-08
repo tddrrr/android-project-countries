@@ -16,13 +16,15 @@ public class Country implements Parcelable {
     private String language;
     private String currency;
     private String systemOfGovernment;
+    private String population;
 
-    public Country(String name, String capital, String language, String currency, String systemOfGovernment) {
+    public Country(String name, String capital, String language, String currency, String systemOfGovernment, String population) {
         this.name = name;
         this.capital = capital;
         this.language = language;
         this.currency = currency;
         this.systemOfGovernment = systemOfGovernment;
+        this.population = population;
     }
 
     protected Country(Parcel in) {
@@ -32,6 +34,7 @@ public class Country implements Parcelable {
         language = in.readString();
         currency = in.readString();
         systemOfGovernment = in.readString();
+        population = in.readString();
     }
 
     @Override
@@ -41,7 +44,7 @@ public class Country implements Parcelable {
                 ", capital='" + capital + '\'' +
                 ", language='" + language + '\'' +
                 ", currency='" + currency + '\'' +
-                ", systemOfGovernment='" + systemOfGovernment + '\'' +
+                ", systemOfGovernment='" + systemOfGovernment + '\'' + ", population='" + population + '\'' +
                 '}';
     }
 
@@ -105,6 +108,14 @@ public class Country implements Parcelable {
         this.systemOfGovernment = systemOfGovernment;
     }
 
+    public String getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(String population) {
+        this.population = population;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -118,5 +129,6 @@ public class Country implements Parcelable {
         dest.writeString(language);
         dest.writeString(currency);
         dest.writeString(systemOfGovernment);
+        dest.writeString(population);
     }
 }

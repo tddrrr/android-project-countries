@@ -29,7 +29,7 @@ public class MainMenu extends AppCompatActivity {
     private Fragment currentFragment;
     private List<Country> countries = new ArrayList<>();
     private AsyncTaskRunner asyncTaskRunner = new AsyncTaskRunner();
-    private static final String URL_COUNTRIES = "https://api.mocki.io/v1/f6024002";
+    private static final String URL_COUNTRIES = "https://api.mocki.io/v1/f13be828";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

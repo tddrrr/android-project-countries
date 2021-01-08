@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.proiect_bd_tema.Country;
+import com.example.proiect_bd_tema.CountryAdapter;
 import com.example.proiect_bd_tema.R;
 
 import java.util.ArrayList;
@@ -58,8 +59,10 @@ public class FragmentInvatare extends Fragment {
         }
         //creez adapter pentru lv
         if (getContext() != null) {
-            ArrayAdapter<Country> adapterCountry = new ArrayAdapter<>(getContext().getApplicationContext(),
-                    android.R.layout.simple_list_item_1, countries);
+//            ArrayAdapter<Country> adapterCountry = new ArrayAdapter<>(getContext().getApplicationContext(),
+//                    android.R.layout.simple_list_item_1, countries);
+            CountryAdapter adapterCountry = new CountryAdapter(getContext().getApplicationContext(),R.layout.lv_row_view_invatare, countries,
+                    getLayoutInflater());
             lvCountries.setAdapter(adapterCountry);
         }
     }
