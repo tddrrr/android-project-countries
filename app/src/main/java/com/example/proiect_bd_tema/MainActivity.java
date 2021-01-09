@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private  Button btnCreateAccount;
     private List<User> users = new ArrayList<>();
     private ListView lvusers;
+    private SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +43,9 @@ public class MainActivity extends AppCompatActivity {
 //       Log.v("countries_from_dc", countries.toString());
 //        writePreferences();
 //        readPreferences();
+        preferences = getSharedPreferences(Login.LOGIN_SHARED_PREF, MODE_PRIVATE);
         initComponent();
-
+        checkUserLoggedIn();
 
     }
     private void initComponent(){
@@ -64,22 +67,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private void writePreferences() {
-        SharedPreferences preferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("username", "Nume");
-        editor.putInt("intValue", 22);
-        editor.putInt("varsta", 45);
 
-        editor.commit();
-    }
-    private void readPreferences() {
-        SharedPreferences preferences = getSharedPreferences("prefs", Context.MODE_PRIVATE);
-        Log.v("read_string", preferences.getString("username", "N/A"));
-        Log.v("read_int", preferences.getInt("varsta", 0)+"");
-        Log.v("read_string", preferences.getString("dgs", "Not found"));
-
-    }
 
     @Override
     protected void onActivityResult(int requestCode,
@@ -107,6 +95,15 @@ public class MainActivity extends AppCompatActivity {
                 //lista de studenti si ar trebui sa avem unul nou pe ecran
                 //adapter.notifyDataSetChanged();
             }
+        }
+    }
+
+    private void checkUserLoggedIn() {
+        boolean rememberMe = preferences.getBoolean(Login.LOGGED_IN, false);
+        if (rememberMe) {
+            Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+            finish();
+            startActivity(intent);
         }
     }
 }

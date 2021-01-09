@@ -1,5 +1,7 @@
 package com.example.proiect_bd_tema;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -29,6 +31,7 @@ public class MainMenu extends AppCompatActivity {
     private Fragment currentFragment;
     private List<Country> countries = new ArrayList<>();
     private AsyncTaskRunner asyncTaskRunner = new AsyncTaskRunner();
+    private SharedPreferences preferences;
     private static final String URL_COUNTRIES = "https://api.mocki.io/v1/a5ca05cb";
 
     @Override
@@ -38,6 +41,7 @@ public class MainMenu extends AppCompatActivity {
         getCountriesFromJSON();
         configNavigation();
         navigationView = findViewById(R.id.nav_view);
+        preferences = getSharedPreferences(Login.LOGIN_SHARED_PREF, MODE_PRIVATE);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -61,8 +65,14 @@ public class MainMenu extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),
                             "Test",
                             Toast.LENGTH_LONG).show();
-                }
-                    else{
+                } else if (item.getItemId() == R.id.main_nav_logout){
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.clear().commit();
+                        //schimb la mainActivity
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    finish();
+                    startActivity(intent);
+                } else{
                     currentFragment = new FragmentProfil();
                     Toast.makeText(getApplicationContext(),
                             "Show score",

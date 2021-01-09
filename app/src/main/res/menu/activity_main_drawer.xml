@@ -22,5 +22,10 @@
             android:id="@+id/main_nav_score"
             android:icon="@drawable/ic_baseline_score_24"
             android:title="@string/menu_scor" />
+        <item
+            android:id="@+id/main_nav_logout"
+            android:icon="@drawable/ic_baseline_lock_24"
+            android:title="Logout"
+            />
     </group>
 </menu>
