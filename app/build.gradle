@@ -5,7 +5,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.proiect_bd_tema"
+        applicationId "com.example.project_countries"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1

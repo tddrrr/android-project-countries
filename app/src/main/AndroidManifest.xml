@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.proiect_bd_tema">
+    package="com.example.project_countries">
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,12 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainMenu"
+            android:name="com.example.project_countries.MainMenu"
             android:label="@string/title_activity_main_menu"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".CreateAccount" />
-        <activity android:name=".Login" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.project_countries.CreateAccount" />
+        <activity android:name="com.example.project_countries.Login" />
+        <activity android:name="com.example.project_countries.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
