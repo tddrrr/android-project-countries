@@ -27,4 +27,6 @@ public interface UserDAO {
     User findUserById(int id);
     @Query("SELECT * FROM users WHERE email=:email")
     User findUserByEmail(String email);
+    @Query("UPDATE users SET score=:score where userId=:id")
+    int updateUserScore(int score, int id);
 }

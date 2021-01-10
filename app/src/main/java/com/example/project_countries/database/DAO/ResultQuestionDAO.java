@@ -24,6 +24,6 @@ public interface ResultQuestionDAO {
     int updateResultQuestion(ResultQuestion resultQuestion);
     @Query("SELECT * FROM Result")
     List<ResultQuestion> getAllResults();
-    @Query("SELECT count(resultId) from Result where isCorrect LIKE '%TRUE%' AND userId=:id ")
+    @Query("SELECT count(resultId) from Result where isCorrect LIKE 'true' AND userId=:id")
     int getScore(int id);
 }

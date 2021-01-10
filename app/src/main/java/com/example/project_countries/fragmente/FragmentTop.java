@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +59,8 @@ public class FragmentTop extends Fragment {
         userOperations.getAll(result -> {
             if (result != null) {
                 users.addAll(result);
-                addMockupUsers();
+                Log.d("Users", result.toString());
+//                addMockupUsers();
                 users = users
                         .stream()
                         .sorted((a, b) ->  b.getScore() - a.getScore())
@@ -67,6 +69,7 @@ public class FragmentTop extends Fragment {
             }
         });
     }
+
 
     private void addMockupUsers() {
         users.add(new User("John",

@@ -83,7 +83,7 @@ public class FragmentTesteazaCunostintele extends Fragment {
         questionOperations.getAll(result -> {
             if (result != null) {
                 questions.addAll(result);
-                setQuestionOnScreen(0);
+                setQuestionOnScreen(position);
             }
         });
     }
@@ -103,19 +103,25 @@ public class FragmentTesteazaCunostintele extends Fragment {
         String correctAnswer = objectQuestion.getCorrectAnswer();
         Integer correctId = rgAnswers.getCheckedRadioButtonId();
         RadioButton radioButton = view.findViewById(correctId);
-        if (radioButton.getText().toString().equals(correctAnswer)) {
+        if (radioButton.getText().toString().trim().equals(correctAnswer)) {
             return "true";
         } else return "false";
     }
 
     private void onClickNext() {
-        if (position < questions.size()) {
+        if (position < questions.size()-1) {
             ResultQuestion resultQuestion = new ResultQuestion(sharedPreferences.getInt(Login.id_user, -1),
                     questions.get(position).getQuestionId(), checkIfCorrect());
+            Log.d("resultQuestion", resultQuestion.toString());
             resultOperations.insert(result -> {
             },resultQuestion);
-            setQuestionOnScreen(position++);
-        } else {
+            setQuestionOnScreen(++position);
+        } else if (position == questions.size()-1) {
+            ResultQuestion resultQuestion = new ResultQuestion(sharedPreferences.getInt(Login.id_user, -1),
+                    questions.get(position).getQuestionId(), checkIfCorrect());
+            Log.d("resultQuestion", resultQuestion.toString());
+            resultOperations.insert(result -> {
+            },resultQuestion);
             nextQuestion.setEnabled(false);
             Toast.makeText(getContext().getApplicationContext(), R.string.endOfQuestions, Toast.LENGTH_SHORT).show();
         }

@@ -83,7 +83,7 @@ public class ResultOperations {
         };
         taskRunner.executeAsync(callable, callback);
     }
-    public void getScore(Callback<Integer> callback, final ResultQuestion resultQuestion, final int id){
+    public void getScore(Callback<Integer> callback, final int id){
         Callable<Integer> callable = new Callable<Integer>() {
             @Override
             public Integer call() {

@@ -129,4 +129,17 @@ public class UserOperations {
         };
         taskRunner.executeAsync(callable, callback);
     }
+
+    public void updateUserScore(Callback<Integer> callback, int id, int score) {
+        Callable<Integer> callable = new Callable<Integer>() {
+            @Override
+            public Integer call() throws Exception {
+                if (id < 0) {
+                    return -1;
+                }
+                return userDAO.updateUserScore(score, id);
+            }
+        };
+        taskRunner.executeAsync(callable, callback);
+    }
 }

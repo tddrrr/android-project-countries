@@ -3,6 +3,7 @@ package com.example.project_countries;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -16,7 +17,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.project_countries.asyncTask.AsyncTaskRunner;
 import com.example.project_countries.asyncTask.Callback;
+import com.example.project_countries.database.entities.ResultQuestion;
 import com.example.project_countries.database.entities.User;
+import com.example.project_countries.database.operations.ResultOperations;
+import com.example.project_countries.database.operations.UserOperations;
 import com.example.project_countries.fragmente.FragmentInvatare;
 import com.example.project_countries.fragmente.FragmentProfil;
 import com.example.project_countries.fragmente.FragmentTesteazaCunostintele;
@@ -45,9 +49,10 @@ public class MainMenu extends AppCompatActivity {
         getCountriesFromJSON();
         configNavigation();
         user = (User)getIntent().getSerializableExtra("user");
-
         navigationView = findViewById(R.id.nav_view);
         preferences = getSharedPreferences(Login.LOGIN_SHARED_PREF, MODE_PRIVATE);
+        updateUserScore();
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -88,7 +93,7 @@ public class MainMenu extends AppCompatActivity {
         Callback<String> mainThreadOperation = new Callback<String>() {
             @Override
             public void runResultOnUiTread(String result) { //am intrat in activitate
-                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                 countries.addAll(CountryJSONParser.fromJSON(result));
 //                notifyAdapter();
             }
@@ -117,5 +122,15 @@ public class MainMenu extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.main_frame_container, currentFragment) // aici pot fi oricate metode de replace
                 .commit();
+    }
+
+    private void updateUserScore() {
+        int idUser = preferences.getInt(Login.id_user, MODE_PRIVATE);
+        ResultOperations resultOperations = new ResultOperations(getApplicationContext());
+        UserOperations userOperations = new UserOperations(getApplicationContext());
+        resultOperations.getScore(result -> {
+            Log.d("scoreResult", result.toString());
+            userOperations.updateUserScore(result1 -> {}, idUser, result);
+        }, idUser);
     }
 }
