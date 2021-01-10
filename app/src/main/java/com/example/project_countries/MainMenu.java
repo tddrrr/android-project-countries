@@ -48,6 +48,7 @@ public class MainMenu extends AppCompatActivity {
         getCountriesFromJSON();
         configNavigation();
         user = (User)getIntent().getSerializableExtra("user");
+        
         // luam informatia din navigation view si punem din baza de date numele si emailul
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
