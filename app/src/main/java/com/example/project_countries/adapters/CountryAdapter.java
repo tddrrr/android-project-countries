@@ -1,4 +1,4 @@
-package com.example.project_countries;
+package com.example.project_countries.adapters;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.project_countries.Country;
+import com.example.project_countries.R;
 import com.example.project_countries.asyncTask.AsyncTaskRunner;
 import com.example.project_countries.asyncTask.Callback;
 

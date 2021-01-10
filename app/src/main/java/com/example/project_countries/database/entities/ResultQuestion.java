@@ -1,16 +1,9 @@
 package com.example.project_countries.database.entities;
 
-import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
-import androidx.room.Junction;
 import androidx.room.PrimaryKey;
-import androidx.room.Relation;
-
-import com.example.project_countries.database.DAO.ResultQuestionDAO;
-
-import java.io.Serializable;
 
 @Entity(tableName = "Result", foreignKeys = {@ForeignKey(entity = User.class, parentColumns = "userId", childColumns = "userId", onDelete = ForeignKey.CASCADE),
         @ForeignKey(entity = Question.class, parentColumns = "questionId", childColumns = "questionId", onDelete = ForeignKey.CASCADE)})
