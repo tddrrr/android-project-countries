@@ -17,7 +17,8 @@ public class Login extends AppCompatActivity {
     public static final String LOGIN_SHARED_PREF = "loginSharedPref";
     public static final String LOGGED_IN = "loggedIN";
     public static final String id_user = "idUser";
-    public static final String NAME_USER = "nameUser";
+    public static final String FIRSTNAME_USER = "firstNameUser";
+    public static final String LASTNAME_USER = "lastNameUser";
     private Button btnOk;
     private TextInputEditText tietEmail;
     private TextInputEditText tietPassword;
@@ -68,11 +69,13 @@ public class Login extends AppCompatActivity {
                     if (cbRemember.isChecked()) {
                         editor.putBoolean(LOGGED_IN, true);
                     }
-                    editor.putString(NAME_USER, result.getFirstName());
+                    editor.putString(FIRSTNAME_USER, result.getFirstName());
+                    editor.putString(LASTNAME_USER,result.getLastName());
                     editor.apply();
                     Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-                    finish();
+
                     startActivity(intent);
+                    finish();
                 }
             }
         });
