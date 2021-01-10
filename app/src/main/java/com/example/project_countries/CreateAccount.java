@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.example.project_countries.asyncTask.Callback;
 import com.example.project_countries.database.entities.User;
-import com.example.project_countries.database.operations.userOperations;
+import com.example.project_countries.database.operations.UserOperations;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class CreateAccount extends AppCompatActivity {
     private TextInputEditText tietEmail;
     private TextInputEditText tietPassword;
     private  Intent intent;
-    userOperations userOperations;
+    UserOperations userOperations;
 
     private void initComp(){
         btnOk=findViewById(R.id.create_acc_btn_ok);
@@ -38,6 +38,7 @@ public class CreateAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_account);
+        userOperations = new UserOperations(getApplicationContext());
         initComp();
 //        intent=getIntent();
     }
@@ -69,11 +70,9 @@ public class CreateAccount extends AppCompatActivity {
                     //construire obiect java cu informatiile din interfata
                     createUser();
                     //punere in intent a studentului pe care dorim sa-l trimitem catre MainActivity
-//                    intent.putExtra(USER_KEY, user);
-//                    //trimiterea intent-ului catre MainActivity
-//                    setResult(RESULT_OK, intent);
-//                    //inchidere activitate curenta
+                    Intent intent = new Intent(getApplicationContext(), Login.class);
 //                    finish();
+                    startActivity(intent);
                 }
             }
         };
@@ -94,7 +93,6 @@ public class CreateAccount extends AppCompatActivity {
                 if (result == null) {
                     Toast.makeText(getApplicationContext(), R.string.error_insert_user, Toast.LENGTH_LONG).show();
                 } else {
-                    users.add(result);
                     Toast.makeText(getApplicationContext(), R.string.success_insert_user, Toast.LENGTH_LONG).show();
                 }
             }

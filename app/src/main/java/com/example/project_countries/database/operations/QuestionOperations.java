@@ -11,14 +11,14 @@ import com.example.project_countries.database.manager.DatabaseManager;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-public class questionOperations {
+public class QuestionOperations {
     private Activity context;
     private DatabaseManager databaseManager;
     private final AsyncTaskRunner taskRunner;
     private final QuestionDAO questionDAO;
 
 
-    public questionOperations(Activity context, List<Question> dataList){
+    public QuestionOperations(Activity context, List<Question> dataList){
         this.context=context;
         notifyAll();
         taskRunner = new AsyncTaskRunner();

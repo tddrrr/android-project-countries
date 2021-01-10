@@ -1,6 +1,7 @@
 package com.example.project_countries.database.operations;
 
 import android.app.Activity;
+import android.content.Context;
 
 import com.example.project_countries.asyncTask.AsyncTaskRunner;
 import com.example.project_countries.asyncTask.Callback;
@@ -11,20 +12,18 @@ import com.example.project_countries.database.manager.DatabaseManager;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-public class userOperations {
+public class UserOperations {
     private List<User> userList;
-    private Activity context;
+    private Context context;
     private DatabaseManager databaseManager;
     private final AsyncTaskRunner taskRunner;
     private final UserDAO userDAO;
 
 
-    public userOperations(Activity context, List<User> dataList){
+    public UserOperations(Context context){
         this.context=context;
-       // this.userList=dataList;
-        notifyAll();
-        taskRunner = new AsyncTaskRunner();
-        userDAO=DatabaseManager.getInstance(context).getUserDAO();
+        this.taskRunner = new AsyncTaskRunner();
+        this.userDAO = DatabaseManager.getInstance(context).getUserDAO();
     }
 
     public List<User> getUsers(){ return userDAO.getAllUsers(); }

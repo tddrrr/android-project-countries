@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
-import com.example.project_countries.database.operations.userOperations;
+import com.example.project_countries.database.operations.UserOperations;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class Login extends AppCompatActivity {
@@ -23,7 +23,7 @@ public class Login extends AppCompatActivity {
     private TextInputEditText tietPassword;
     private CheckBox cbRemember;
     private SharedPreferences preferences;
-    userOperations userOperations;
+    UserOperations userOperations;
 
     private void initComp(){
         btnOk = findViewById(R.id.btn_login_ok);
@@ -53,28 +53,28 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        userOperations = new UserOperations(getApplicationContext());
         initComp();
     }
 
     private void loginUser() {
         userOperations.findUserByEmail(tietEmail.getText().toString(), result -> {
-        if (result != null) {
             if (result == null) {
                 Toast.makeText(getApplicationContext(), getString(R.string.error_credentials), Toast.LENGTH_SHORT).show();
-            }
-            else if (result.getPassword().equals(tietPassword.getText().toString())) {
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putLong(id_user, result.getUserId());
-                if (cbRemember.isChecked()) {
-                    editor.putBoolean(LOGGED_IN, true);
+            } else {
+                if (result.getPassword().equals(tietPassword.getText().toString())) {
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putLong(id_user, result.getUserId());
+                    if (cbRemember.isChecked()) {
+                        editor.putBoolean(LOGGED_IN, true);
+                    }
+                    editor.putString(NAME_USER, result.getFirstName());
+                    editor.apply();
+                    Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+                    finish();
+                    startActivity(intent);
                 }
-                editor.putString(NAME_USER, result.getFirstName());
-                editor.apply();
-                Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-                finish();
-                startActivity(intent);
             }
-        }
         });
         //salvarea in fisierul de preferinte
 
