@@ -35,4 +35,7 @@
     <string name="enter_credentials">Enter your credentials</string>
     <string name="invalid_email">Your email is invalid</string>
     <string name="remember_me">Remember</string>
+    <string name="error_insert_user">Error at inserting user</string>
+    <string name="success_insert_user">Added new user</string>
+    <string name="error_credentials">Wrong credentials</string>
 </resources>

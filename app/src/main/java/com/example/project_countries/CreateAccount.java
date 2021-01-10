@@ -8,11 +8,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.project_countries.asyncTask.Callback;
 import com.example.project_countries.database.entities.User;
 import com.example.project_countries.database.operations.userOperations;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.List;
+
 public class CreateAccount extends AppCompatActivity {
+    private List<User> users;
     private Button btnOk;
     public static final String USER_KEY = "user_key";
     private TextInputEditText tietFirstname;
@@ -35,7 +39,7 @@ public class CreateAccount extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_account);
         initComp();
-        intent=getIntent();
+//        intent=getIntent();
     }
     private boolean validate(){
         if (tietFirstname.getText().toString().length() < 2) {
@@ -63,13 +67,13 @@ public class CreateAccount extends AppCompatActivity {
                 //validarea campurilor de intrare
                 if (validate()) {
                     //construire obiect java cu informatiile din interfata
-                  //  User user = createUser();
+                    createUser();
                     //punere in intent a studentului pe care dorim sa-l trimitem catre MainActivity
-                  //  intent.putExtra(USER_KEY, user);
-                    //trimiterea intent-ului catre MainActivity
-                    setResult(RESULT_OK, intent);
-                    //inchidere activitate curenta
-                    finish();
+//                    intent.putExtra(USER_KEY, user);
+//                    //trimiterea intent-ului catre MainActivity
+//                    setResult(RESULT_OK, intent);
+//                    //inchidere activitate curenta
+//                    finish();
                 }
             }
         };
@@ -80,7 +84,21 @@ public class CreateAccount extends AppCompatActivity {
         String email = tietEmail.getText().toString();
         String password = tietPassword.getText().toString();
         User user = new User(firstName, lastName, email, password);
-        //userOperations.insert(insertUser(), user);
+        userOperations.insert(insertUserCallback(), user);
+    }
+
+    private Callback<User> insertUserCallback() {
+        return new Callback<User>() {
+            @Override
+            public void runResultOnUiTread(User result) {
+                if (result == null) {
+                    Toast.makeText(getApplicationContext(), R.string.error_insert_user, Toast.LENGTH_LONG).show();
+                } else {
+                    users.add(result);
+                    Toast.makeText(getApplicationContext(), R.string.success_insert_user, Toast.LENGTH_LONG).show();
+                }
+            }
+        };
     }
 
 }

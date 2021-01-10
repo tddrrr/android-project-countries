@@ -104,19 +104,19 @@ public class userOperations {
         taskRunner.executeAsync(callable, callback);
     }
 
-    public void updateFirstName(Callback<User> callback, final User user, final int id, final String fname) {
-        Callable<User> callable = new Callable<User>() {
-            @Override
-            public User call() {
-                if (user == null) {
-                    return null;
-                }
-                userDAO.updateFirstName(userDAO.findUserById(id), fname);
-                return user;
-            }
-        };
-        taskRunner.executeAsync(callable, callback);
-    }
+//    public void updateFirstName(Callback<User> callback, final User user, final int id, final String fname) {
+//        Callable<User> callable = new Callable<User>() {
+//            @Override
+//            public User call() {
+//                if (user == null) {
+//                    return null;
+//                }
+//                userDAO.updateFirstName(userDAO.findUserById(id), fname);
+//                return user;
+//            }
+//        };
+//        taskRunner.executeAsync(callable, callback);
+//    }
 
     public void delete(Callback<Integer> callback, final User user) {
         Callable<Integer> callable = new Callable<Integer>() {

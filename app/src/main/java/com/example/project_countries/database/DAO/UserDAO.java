@@ -21,8 +21,8 @@ public interface UserDAO {
     int updateUser(User user);
     @Query("SELECT * FROM users")
     List<User> getAllUsers();
-    @Query("UPDATE users SET firstName=:fText Where userId = :id")
-    void updateFirstName(User id, String fText);
+    //@Query("UPDATE users SET firstName=:fText Where userId = :id")
+    //void updateFirstName(User id, String fText);
     @Query("SELECT * FROM users WHERE userId=:id")
     User findUserById(int id);
     @Query("SELECT * FROM users WHERE email=:email")

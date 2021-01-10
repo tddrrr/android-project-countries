@@ -10,16 +10,20 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.example.project_countries.database.operations.userOperations;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class Login extends AppCompatActivity {
     public static final String LOGIN_SHARED_PREF = "loginSharedPref";
     public static final String LOGGED_IN = "loggedIN";
+    public static final String id_user = "idUser";
+    public static final String NAME_USER = "nameUser";
     private Button btnOk;
     private TextInputEditText tietEmail;
     private TextInputEditText tietPassword;
     private CheckBox cbRemember;
     private SharedPreferences preferences;
+    userOperations userOperations;
 
     private void initComp(){
         btnOk = findViewById(R.id.btn_login_ok);
@@ -53,14 +57,27 @@ public class Login extends AppCompatActivity {
     }
 
     private void loginUser() {
-        //salvarea in fisierul de preferinte
-        SharedPreferences.Editor editor = preferences.edit();
-        if (cbRemember.isChecked()) {
-            editor.putBoolean(LOGGED_IN, true);
+        userOperations.findUserByEmail(tietEmail.getText().toString(), result -> {
+        if (result != null) {
+            if (result == null) {
+                Toast.makeText(getApplicationContext(), getString(R.string.error_credentials), Toast.LENGTH_SHORT).show();
+            }
+            else if (result.getPassword().equals(tietPassword.getText().toString())) {
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putLong(id_user, result.getUserId());
+                if (cbRemember.isChecked()) {
+                    editor.putBoolean(LOGGED_IN, true);
+                }
+                editor.putString(NAME_USER, result.getFirstName());
+                editor.apply();
+                Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+                finish();
+                startActivity(intent);
+            }
         }
-        editor.apply();
-        Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-        startActivity(intent);
+        });
+        //salvarea in fisierul de preferinte
+
     }
 
     private boolean validateComponents() {
