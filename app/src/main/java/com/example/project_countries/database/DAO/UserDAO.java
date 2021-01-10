@@ -14,15 +14,11 @@ import java.util.List;
 public interface UserDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertUser(User user);
+    long insertUser(User user); //long e val id-ului
     @Delete
-    void deleteUser(User user);
+    int deleteUser(User user);
     @Update
-    void updateUser(User user);
+    int updateUser(User user);
     @Query("SELECT * FROM users")
     List<User> getAllUsers();
-    @Query("SELECT * FROM users WHERE first_name='Buzau'")
-    List<User> getAllBuzau();
-    @Query("SELECT * FROM users WHERE first_name=:name")
-    List<User> getAllByName(String name);
 }

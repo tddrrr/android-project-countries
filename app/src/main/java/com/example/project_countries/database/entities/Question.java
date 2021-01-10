@@ -1,19 +1,20 @@
 package com.example.project_countries.database.entities;
 
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-public class Test {
+@Entity(tableName = "questions")
+public class Question {
     @PrimaryKey(autoGenerate = true)
-    private  int testId;
+    private  int questionId;
     private String question;
     private String answer;
     private String wanswer1; // wrong answer
     private String wanswer2;
     private String wanswer3;
-    private int difficulty;
 
-    public void setTestId(int testId) {
-        this.testId = testId;
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
     }
 
     public void setQuestion(String question) {
@@ -36,12 +37,9 @@ public class Test {
         this.wanswer3 = wanswer3;
     }
 
-    public void setDifficulty(int difficulty) {
-        this.difficulty = difficulty;
-    }
 
-    public int getTestId() {
-        return testId;
+    public int getQuestionId() {
+        return questionId;
     }
 
     public String getQuestion() {
@@ -64,7 +62,5 @@ public class Test {
         return wanswer3;
     }
 
-    public int getDifficulty() {
-        return difficulty;
-    }
+
 }
