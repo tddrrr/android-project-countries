@@ -8,7 +8,12 @@
     <ListView
         android:id="@+id/lv_top"
         android:layout_width="match_parent"
+<<<<<<< HEAD
         android:layout_height=""
+=======
+        android:layout_height="match_parent"
+        android:text="@string/hello" />
+>>>>>>> 8ee255e981a7b6c6835b63feaad6340efa58d898
 
         />
 

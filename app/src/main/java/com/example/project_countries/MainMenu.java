@@ -18,6 +18,8 @@ import com.example.project_countries.asyncTask.AsyncTaskRunner;
 import com.example.project_countries.asyncTask.Callback;
 import com.example.project_countries.fragmente.FragmentInvatare;
 import com.example.project_countries.fragmente.FragmentProfil;
+import com.example.project_countries.fragmente.FragmentTesteazaCunostintele;
+import com.example.project_countries.fragmente.FragmentTop;
 import com.example.project_countries.fragmente.FragmentWelcome;
 import com.example.project_countries.network.HttpManager;
 import com.google.android.material.navigation.NavigationView;
@@ -56,7 +58,7 @@ public class MainMenu extends AppCompatActivity {
 
                 } else if (item.getItemId() == R.id.main_nav_test) {
                     //am dat click pe home
-                    currentFragment = new FragmentProfil();
+                    currentFragment = new FragmentTesteazaCunostintele();
 
                 } else if (item.getItemId() == R.id.main_nav_logout)
                 {
@@ -68,7 +70,7 @@ public class MainMenu extends AppCompatActivity {
                     startActivity(intent);
                 } else
                     {
-                    currentFragment = new FragmentWelcome();
+                    currentFragment = new FragmentTop();
                 }
                 openFragment();
                 drawerLayout.closeDrawer(GravityCompat.START); // pentru ca atunci cand selectam sa se inchida meniul
