@@ -32,7 +32,7 @@ public class Login extends AppCompatActivity {
         tietPassword = findViewById(R.id.login_password);
         cbRemember = findViewById(R.id.cb_remember);
         cbRemember.isChecked();
-        //construire fisier de preferinte
+        //construire fisier duse preferinte
         preferences = getSharedPreferences(LOGIN_SHARED_PREF, MODE_PRIVATE);
 
         btnOk.setOnClickListener(logUser());
@@ -65,7 +65,7 @@ public class Login extends AppCompatActivity {
             } else {
                 if (result.getPassword().equals(tietPassword.getText().toString())) {
                     SharedPreferences.Editor editor = preferences.edit();
-                    editor.putLong(id_user, result.getUserId());
+                    editor.putInt(id_user, result.getUserId());
                     if (cbRemember.isChecked()) {
                         editor.putBoolean(LOGGED_IN, true);
                     }

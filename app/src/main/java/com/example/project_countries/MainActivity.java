@@ -12,8 +12,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.project_countries.asyncTask.Callback;
 import com.example.project_countries.database.entities.User;
 import com.example.project_countries.database.manager.DatabaseManager;
+import com.example.project_countries.database.operations.UserOperations;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private List<User> users = new ArrayList<>();
     private ListView lvusers;
     private SharedPreferences preferences;
+    UserOperations userOperations;
+    private User user;
     DatabaseManager databaseManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,24 +38,21 @@ public class MainActivity extends AppCompatActivity {
         preferences = getSharedPreferences(Login.LOGIN_SHARED_PREF, MODE_PRIVATE);
         initComponent();
         checkUserLoggedIn();
-
     }
     private void initComponent(){
         btnLogin=findViewById(R.id.btn_login);
         btnLogin.setOnClickListener(changeActivityOnLogin());
         btnCreateAccount=findViewById(R.id.btn_createAcc);
         btnCreateAccount.setOnClickListener(startActivityOnCreate());
+        userOperations = new UserOperations(getApplicationContext());
     }
 
     private View.OnClickListener startActivityOnCreate() {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                     Intent intent = new Intent(getApplicationContext(), CreateAccount.class);
                     startActivityForResult(intent, NEW_USER_REQUEST_CODE);
-
-
             }
         };
     }
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Login.class );
+                Intent intent = new Intent(getApplicationContext(), Login.class);
                 startActivity(intent);
                 //hei hei
             }
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
                 users.add(user);
                 Log.d("TAG",user.toString());
+                this.user = user;
                 //preluare adapter setat pe ListView
                 //ArrayAdapter adapter = (ArrayAdapter) lvusers.getAdapter();
                 //notificare adapter pentru redesenarea valorilor pe ecran, deoarece am modificat
@@ -103,10 +105,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkUserLoggedIn() {
         boolean rememberMe = preferences.getBoolean(Login.LOGGED_IN, false);
+        int id = preferences.getInt(Login.id_user, -1);
         if (rememberMe) {
-            Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-            finish();
-            startActivity(intent);
+            userOperations.findUserById(result -> {
+                Intent intent = new Intent(getApplicationContext(), MainMenu.class);
+                intent.putExtra("user", result);
+                startActivity(intent);
+                finish();
+            }, id);
         }
     }
 }
