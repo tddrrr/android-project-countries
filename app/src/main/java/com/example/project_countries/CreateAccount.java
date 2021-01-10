@@ -69,7 +69,7 @@ public class CreateAccount extends AppCompatActivity {
                 if (validate()) {
                     //construire obiect java cu informatiile din interfata
                     createUser();
-                    //punere in intent a studentului pe care dorim sa-l trimitem catre MainActivity
+                    //punere in intent a studentului pe care dorim sa-l trimitem catre Login
                     Intent intent = new Intent(getApplicationContext(), Login.class);
 //                    finish();
                     startActivity(intent);
