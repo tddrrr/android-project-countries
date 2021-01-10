@@ -107,7 +107,7 @@ public class MainMenu extends AppCompatActivity {
         Callback<String> mainThreadOperation = new Callback<String>() {
             @Override
             public void runResultOnUiTread(String result) { //am intrat in activitate
-                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
                 countries.addAll(CountryJSONParser.fromJSON(result));
 //                notifyAdapter();
             }
