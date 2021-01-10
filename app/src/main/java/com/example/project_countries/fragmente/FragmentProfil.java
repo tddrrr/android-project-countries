@@ -27,9 +27,11 @@ import static com.example.project_countries.Login.id_user;
 
 public class FragmentProfil extends Fragment {
     private SharedPreferences preferences ;
-    private String firstName;
-    private String lastName;
+    private TextView firstName;
+    private TextView lastName;
     private TextView info;
+    private TextView Email;
+    private TextView Score;
     private User user;
     public FragmentProfil(User user) {
         this.user=user;
@@ -42,7 +44,18 @@ public class FragmentProfil extends Fragment {
         String value = getContext().getString(R.string.fragment_profil_info,user.getFirstName(),user.getLastName());
         info= v.findViewById(R.id.tv_nume);
         info.setText(value);
-
+        String fname = getContext().getString(R.string.fragment_profil_firstName,user.getFirstName());
+        String lname = getContext().getString(R.string.fragment_profil_lastName,user.getLastName());
+        String email = getContext().getString(R.string.fragment_profil_email,user.getEmail());
+        String score = getContext().getString(R.string.fragment_profil_score,user.getScore());
+        firstName= v.findViewById(R.id.tv_profile_firstName);
+        firstName.setText(fname);
+        lastName= v.findViewById(R.id.tv_profile_lastName);
+        lastName.setText(lname);
+        Email= v.findViewById(R.id.tv_profile_Email);
+        Email.setText(email);
+        Score= v.findViewById(R.id.tv_profile_Score);
+        Score.setText(score);
     }
 
     @Override

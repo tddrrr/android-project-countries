@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#5493CAC5"
     android:orientation="vertical"
     tools:context=".fragmente.FragmentProfil">
 
@@ -11,29 +12,67 @@
 
     <ImageView
         android:id="@+id/iv_profilePicture"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:contentDescription="@string/menu_profil"
+        android:layout_width="190dp"
+        android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:src="@drawable/ic_baseline_account_circle_24" />
+        android:contentDescription="@string/menu_profil"
+        android:src="@drawable/ic_baseline_person_pin_24" />
 
     <TextView
         android:id="@+id/tv_nume"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="32dp"
         android:text="@string/fragment_profil_info"
-        android:layout_gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_profilePicture" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/testScoreHistory"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:scrollbars="vertical"/>
+    <TextView
+        android:id="@+id/tv_profile_firstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:text="@string/fragment_profil_firstName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profilePicture" />
+
+    <TextView
+        android:id="@+id/tv_profile_lastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:text="@string/fragment_profil_lastName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profilePicture" />
+
+    <TextView
+        android:id="@+id/tv_profile_Email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:text="@string/fragment_profil_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profilePicture" />
+
+    <TextView
+        android:id="@+id/tv_profile_Score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:text="@string/fragment_profil_score"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profilePicture" />
+
 
 </LinearLayout>

@@ -23,6 +23,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello">Hello! Go to our menu to start your journey!</string>
     <string name="fragment_profil_info">%1$s %2$s</string>
+    <string name="fragment_profil_firstName"> First Name :       %1$s </string>
+    <string name="fragment_profil_lastName">Last Name :     %1$s </string>
+    <string name="fragment_profil_email">Email :    %1$s </string>
+    <string name="fragment_profil_score">Score :    %1$d </string>
     <string name="invata">Invatare</string>
     <string name="lv_row_flag">flag</string>
     <string name="country_name">Country name</string>
