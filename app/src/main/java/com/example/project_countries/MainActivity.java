@@ -13,8 +13,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.project_countries.asyncTask.Callback;
+import com.example.project_countries.database.entities.Question;
 import com.example.project_countries.database.entities.User;
 import com.example.project_countries.database.manager.DatabaseManager;
+import com.example.project_countries.database.operations.QuestionOperations;
 import com.example.project_countries.database.operations.UserOperations;
 
 import java.util.ArrayList;
@@ -26,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
     private Button btnLogin;
     private  Button btnCreateAccount;
     private List<User> users = new ArrayList<>();
-    private ListView lvusers;
     private SharedPreferences preferences;
     UserOperations userOperations;
+    QuestionOperations questionOperations;
     private User user;
     DatabaseManager databaseManager;
     @Override
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         preferences = getSharedPreferences(Login.LOGIN_SHARED_PREF, MODE_PRIVATE);
         initComponent();
+        getAllQuestions();
         checkUserLoggedIn();
     }
     private void initComponent(){
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         btnCreateAccount=findViewById(R.id.btn_createAcc);
         btnCreateAccount.setOnClickListener(startActivityOnCreate());
         userOperations = new UserOperations(getApplicationContext());
+        questionOperations = new QuestionOperations(getApplicationContext());
     }
 
     private View.OnClickListener startActivityOnCreate() {
@@ -94,11 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 users.add(user);
                 Log.d("TAG",user.toString());
                 this.user = user;
-                //preluare adapter setat pe ListView
-                //ArrayAdapter adapter = (ArrayAdapter) lvusers.getAdapter();
-                //notificare adapter pentru redesenarea valorilor pe ecran, deoarece am modificat
-                //lista de studenti si ar trebui sa avem unul nou pe ecran
-                //adapter.notifyDataSetChanged();
+
             }
         }
     }
@@ -114,5 +114,37 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }, id);
         }
+    }
+
+    private void insertQuestion(Question question) {
+        questionOperations.insert(result -> {
+        }, question);
+    }
+
+    private void insertQuestions() {
+        List<Question> questions = new ArrayList<>();
+        questions.add(new Question("Care este capitala Romaniei?", "Bucuresti", "Budapesta", "Bucuresti",
+                "Targoviste", "Bacau"));
+        questions.add(new Question("Care este moneda Bulgariei?", "leva", "euro", "ron",
+                "leva", "dolar"));
+        questions.add(new Question("Care este capitala Suediei?", "Stockholm", "Stockholm", "Strasbourg",
+                "Minsk", "Helsinki"));
+        questions.add(new Question("Care este moneda Marii Britanii?", "sterling pound", "ron", "dolar",
+                "sterling pound", "euro"));
+        questions.add(new Question("Care este sistemul guvernamental al Spaniei?", "monarhie constitutionala",
+                "republica", "monarhie constitutionala",
+                "dictatura", "republica semi-prezidentiala"));
+        for (Question question:
+             questions) {
+            insertQuestion(question);
+        }
+    }
+
+    private void getAllQuestions() {
+        questionOperations.getAll(result -> {
+            if (result != null && result.size() == 0) { //daca am un array gol, inserez entries
+                insertQuestions();
+            }
+        });
     }
 }

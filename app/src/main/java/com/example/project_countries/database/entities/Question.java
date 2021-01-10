@@ -1,6 +1,7 @@
 package com.example.project_countries.database.entities;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "questions")
@@ -8,10 +9,38 @@ public class Question {
     @PrimaryKey(autoGenerate = true)
     private  int questionId;
     private String question;
-    private String answer;
-    private String wanswer1; // wrong answer
+    private String correctAnswer;
+    private String wanswer1; // pun 4 variante, din care una e egala cu correctAnswer
     private String wanswer2;
     private String wanswer3;
+    private String wanswer4;
+
+    public Question(int questionId, String question, String correctAnswer, String wanswer1, String wanswer2, String wanswer3, String wanswer4) {
+        this.questionId = questionId;
+        this.question = question;
+        this.correctAnswer = correctAnswer;
+        this.wanswer1 = wanswer1;
+        this.wanswer2 = wanswer2;
+        this.wanswer3 = wanswer3;
+        this.wanswer4 = wanswer4;
+    }
+    @Ignore
+    public Question(String question, String correctAnswer, String wanswer1, String wanswer2, String wanswer3, String wanswer4) {
+        this.question = question;
+        this.correctAnswer = correctAnswer;
+        this.wanswer1 = wanswer1;
+        this.wanswer2 = wanswer2;
+        this.wanswer3 = wanswer3;
+        this.wanswer4 = wanswer4;
+    }
+
+    public String getWanswer4() {
+        return wanswer4;
+    }
+
+    public void setWanswer4(String wanswer4) {
+        this.wanswer4 = wanswer4;
+    }
 
     public void setQuestionId(int questionId) {
         this.questionId = questionId;
@@ -21,8 +50,8 @@ public class Question {
         this.question = question;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
 
     public void setWanswer1(String wanswer1) {
@@ -46,8 +75,8 @@ public class Question {
         return question;
     }
 
-    public String getAnswer() {
-        return answer;
+    public String getCorrectAnswer() {
+        return correctAnswer;
     }
 
     public String getWanswer1() {
@@ -62,5 +91,16 @@ public class Question {
         return wanswer3;
     }
 
-
+    @Override
+    public String toString() {
+        return "Question{" +
+                "questionId=" + questionId +
+                ", question='" + question + '\'' +
+                ", correctAnswer='" + correctAnswer + '\'' +
+                ", wanswer1='" + wanswer1 + '\'' +
+                ", wanswer2='" + wanswer2 + '\'' +
+                ", wanswer3='" + wanswer3 + '\'' +
+                ", wanswer4='" + wanswer4 + '\'' +
+                '}';
+    }
 }

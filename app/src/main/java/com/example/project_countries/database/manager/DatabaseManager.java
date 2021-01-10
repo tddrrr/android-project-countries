@@ -13,7 +13,7 @@ import com.example.project_countries.database.entities.ResultQuestion;
 import com.example.project_countries.database.entities.Question;
 import com.example.project_countries.database.entities.User;
 
-@Database(entities = {User.class, Question.class, ResultQuestion.class}, exportSchema = false, version = 2) //de incrementat version daca schimb structura BD
+@Database(entities = {User.class, Question.class, ResultQuestion.class}, exportSchema = false, version = 4) //de incrementat version daca schimb structura BD
 public abstract class DatabaseManager extends RoomDatabase {
     private static final String PROJECT_DB = "ProjectDB";
     private static DatabaseManager databaseManager;

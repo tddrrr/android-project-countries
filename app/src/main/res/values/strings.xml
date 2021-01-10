@@ -42,4 +42,7 @@
     <string name="varianta2">%1$s</string>
     <string name="varianta3">%1$s</string>
     <string name="varianta4">%1$s</string>
+    <string name="next_question">Urmatoarea intrebare</string>
+    <string name="question">Question</string>
+    <string name="endOfQuestions">Intrebarile s-au terminat</string>
 </resources>
