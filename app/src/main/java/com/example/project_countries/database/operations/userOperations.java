@@ -71,6 +71,52 @@ public class userOperations {
         };
         taskRunner.executeAsync(callable, callback);
     }
+    public void findUserById(Callback<User> callback, final int id) {
+        Callable<User> callable = new Callable<User>() {
+            @Override
+            public User call() {
+                if (id <1) {
+                    return null;
+                }
+                User user = userDAO.findUserById(id);
+                if(user == null){
+                    return null;
+                }
+                return user;
+            }
+        };
+        taskRunner.executeAsync(callable, callback);
+    }
+    public void findUserByEmail(final String email, Callback<User> callback){
+        Callable<User> callable = new Callable<User>() {
+            @Override
+            public User call() throws Exception {
+                if(email.isEmpty() || email == null){
+                    return null;
+                }
+                User user = userDAO.findUserByEmail(email);
+                if(user ==null){
+                    return null;
+                }
+                return user;
+            }
+        };
+        taskRunner.executeAsync(callable, callback);
+    }
+
+    public void updateFirstName(Callback<User> callback, final User user, final int id, final String fname) {
+        Callable<User> callable = new Callable<User>() {
+            @Override
+            public User call() {
+                if (user == null) {
+                    return null;
+                }
+                userDAO.updateFirstName(userDAO.findUserById(id), fname);
+                return user;
+            }
+        };
+        taskRunner.executeAsync(callable, callback);
+    }
 
     public void delete(Callback<Integer> callback, final User user) {
         Callable<Integer> callable = new Callable<Integer>() {

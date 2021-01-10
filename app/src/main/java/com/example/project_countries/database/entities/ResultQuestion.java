@@ -19,16 +19,16 @@ public class ResultQuestion {
     private int resultId;
     private long userId;
     private long questionId;
-    private boolean isCorrect;
+    private String isCorrect;
 
-    public ResultQuestion(int resultId, long userId, long questionId, boolean isCorrect) {
+    public ResultQuestion(int resultId, long userId, long questionId, String isCorrect) {
         this.resultId = resultId;
         this.userId = userId;
         this.questionId = questionId;
         this.isCorrect = isCorrect;
     }
     @Ignore //pt creare ob
-    public ResultQuestion(long userId, long questionId, boolean isCorrect) {
+    public ResultQuestion(long userId, long questionId, String isCorrect) {
         this.userId = userId;
         this.questionId = questionId;
         this.isCorrect = isCorrect;
@@ -58,11 +58,11 @@ public class ResultQuestion {
         this.questionId = questionId;
     }
 
-    public boolean isCorrect() {
+    public String isCorrect() {
         return isCorrect;
     }
 
-    public void setCorrect(boolean correct) {
+    public void setCorrect(String correct) {
         isCorrect = correct;
     }
 

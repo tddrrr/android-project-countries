@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.project_countries.database.entities.User;
+import com.example.project_countries.database.operations.userOperations;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class CreateAccount extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class CreateAccount extends AppCompatActivity {
     private TextInputEditText tietEmail;
     private TextInputEditText tietPassword;
     private  Intent intent;
+    userOperations userOperations;
 
     private void initComp(){
         btnOk=findViewById(R.id.create_acc_btn_ok);
@@ -61,9 +63,9 @@ public class CreateAccount extends AppCompatActivity {
                 //validarea campurilor de intrare
                 if (validate()) {
                     //construire obiect java cu informatiile din interfata
-                    User user = createUser();
+                  //  User user = createUser();
                     //punere in intent a studentului pe care dorim sa-l trimitem catre MainActivity
-                    intent.putExtra(USER_KEY, user);
+                  //  intent.putExtra(USER_KEY, user);
                     //trimiterea intent-ului catre MainActivity
                     setResult(RESULT_OK, intent);
                     //inchidere activitate curenta
@@ -72,13 +74,13 @@ public class CreateAccount extends AppCompatActivity {
             }
         };
     }
-    private User createUser(){
+    private void createUser(){
         String firstName = tietFirstname.getText().toString();
         String lastName = tietLastname.getText().toString();
         String email = tietEmail.getText().toString();
         String password = tietPassword.getText().toString();
         User user = new User(firstName, lastName, email, password);
-        return user;
+        //userOperations.insert(insertUser(), user);
     }
 
 }
