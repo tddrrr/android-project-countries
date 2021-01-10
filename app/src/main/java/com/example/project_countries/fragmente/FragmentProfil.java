@@ -42,6 +42,7 @@ public class FragmentProfil extends Fragment {
         String value = getContext().getString(R.string.fragment_profil_info,user.getFirstName(),user.getLastName());
         info= v.findViewById(R.id.tv_nume);
         info.setText(value);
+
     }
 
     @Override
