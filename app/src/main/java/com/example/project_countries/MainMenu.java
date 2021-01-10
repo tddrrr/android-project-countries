@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,6 +40,7 @@ public class MainMenu extends AppCompatActivity {
     private SharedPreferences preferences;
     private static final String URL_COUNTRIES = "https://api.mocki.io/v1/a5ca05cb";
     private User user;
+    TextView info, email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +48,15 @@ public class MainMenu extends AppCompatActivity {
         getCountriesFromJSON();
         configNavigation();
         user = (User)getIntent().getSerializableExtra("user");
+        // luam informatia din navigation view si punem din baza de date numele si emailul
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        info =(TextView) headerView.findViewById(R.id.nav_header_info);
+        String a = user.getFirstName()+user.getLastName();
+        info.setText(a);
+
+        email = (TextView) headerView.findViewById(R.id.nav_header_email);
+        email.setText(user.getEmail());
 
         navigationView = findViewById(R.id.nav_view);
         preferences = getSharedPreferences(Login.LOGIN_SHARED_PREF, MODE_PRIVATE);
