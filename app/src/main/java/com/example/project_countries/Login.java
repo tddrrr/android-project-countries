@@ -73,7 +73,7 @@ public class Login extends AppCompatActivity {
                     editor.putString(LASTNAME_USER,result.getLastName());
                     editor.apply();
                     Intent intent = new Intent(getApplicationContext(), MainMenu.class);
-
+                    intent.putExtra("user",result);
                     startActivity(intent);
                     finish();
                 }

@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.project_countries.asyncTask.AsyncTaskRunner;
 import com.example.project_countries.asyncTask.Callback;
+import com.example.project_countries.database.entities.User;
 import com.example.project_countries.fragmente.FragmentInvatare;
 import com.example.project_countries.fragmente.FragmentProfil;
 import com.example.project_countries.fragmente.FragmentTesteazaCunostintele;
@@ -36,13 +37,15 @@ public class MainMenu extends AppCompatActivity {
     private AsyncTaskRunner asyncTaskRunner = new AsyncTaskRunner();
     private SharedPreferences preferences;
     private static final String URL_COUNTRIES = "https://api.mocki.io/v1/a5ca05cb";
-
+    private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         getCountriesFromJSON();
         configNavigation();
+        user = (User)getIntent().getSerializableExtra("user");
+
         navigationView = findViewById(R.id.nav_view);
         preferences = getSharedPreferences(Login.LOGIN_SHARED_PREF, MODE_PRIVATE);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -50,7 +53,7 @@ public class MainMenu extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.main_nav_profil) {
                     //am dat click pe home
-                    currentFragment = new FragmentProfil();
+                    currentFragment = new FragmentProfil(user);
                 } else if (item.getItemId() == R.id.main_nav_invata)
                 {
                     //am dat click pe home
