@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Proiect Android</string>
+    <string name="app_name">Countryzador</string>
     <string name="welcome">Welcome</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
@@ -8,7 +8,7 @@
     <string name="ok">Create</string>
     <string name="lastName">Last Name</string>
     <string name="firstName">First Name</string>
-    <string name="title_activity_main_menu">Proiect Android</string>
+    <string name="title_activity_main_menu">Countryzador</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Nume Prenume</string>
