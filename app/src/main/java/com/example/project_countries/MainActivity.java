@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.project_countries.database.entities.User;
+import com.example.project_countries.database.manager.DatabaseManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private List<User> users = new ArrayList<>();
     private ListView lvusers;
     private SharedPreferences preferences;
-
+    DatabaseManager databaseManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,11 +47,19 @@ public class MainActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CreateAccount.class );
-                startActivityForResult(intent, NEW_USER_REQUEST_CODE);
+
+                    Intent intent = new Intent(getApplicationContext(), CreateAccount.class);
+                    startActivityForResult(intent, NEW_USER_REQUEST_CODE);
+
+
             }
         };
     }
+
+    private boolean createAccount() {
+        return false;
+    }
+
     private View.OnClickListener changeActivityOnLogin() {
         return new View.OnClickListener() {
             @Override

@@ -30,15 +30,21 @@ public class Login extends AppCompatActivity {
         //construire fisier de preferinte
         preferences = getSharedPreferences(LOGIN_SHARED_PREF, MODE_PRIVATE);
 
-        btnOk.setOnClickListener(new View.OnClickListener() {
+        btnOk.setOnClickListener(logUser());
+    }
+
+    private View.OnClickListener logUser() {
+        return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (validateComponents()) {
                     loginUser();
+                    //TODO: trebuie sa verificam daca in baza de date avem emailul si parola respectiva
                 }
             }
-        });
+        };
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

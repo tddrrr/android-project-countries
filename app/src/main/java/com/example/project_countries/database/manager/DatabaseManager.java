@@ -24,6 +24,7 @@ public abstract class DatabaseManager extends RoomDatabase {
                 if (databaseManager == null) { //daca e nul, initializez;
                     databaseManager = Room.databaseBuilder(context, DatabaseManager.class, PROJECT_DB) //initializare: context, clasa de initial, nume bd
                     .fallbackToDestructiveMigration() //la fiecare modificare asupra tabelei, daca nu merge migrarea, ne sterge inregistrarile din tabela
+                            //                    .allowMainThreadQueries()
                             .build();
                 }
             }
