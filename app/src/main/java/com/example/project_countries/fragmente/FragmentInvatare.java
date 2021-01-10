@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.project_countries.Country;
-import com.example.project_countries.CountryAdapter;
+import com.example.project_countries.adapters.CountryAdapter;
 import com.example.project_countries.R;
 
 import java.util.ArrayList;

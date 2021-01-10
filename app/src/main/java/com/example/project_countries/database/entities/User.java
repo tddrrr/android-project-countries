@@ -14,13 +14,14 @@ public class User implements Serializable {
     private String lastName;
     private String email;
     private String password;
-    public int score = 0;
+    private int score = 0;
 
-    public User(String firstName, String lastName, String email, String password) {
+    public User(String firstName, String lastName, String email, String password, int score) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.score = score;
     }
 
     public int getScore() {

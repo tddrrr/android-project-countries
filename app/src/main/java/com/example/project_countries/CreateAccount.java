@@ -82,7 +82,7 @@ public class CreateAccount extends AppCompatActivity {
         String lastName = tietLastname.getText().toString();
         String email = tietEmail.getText().toString();
         String password = tietPassword.getText().toString();
-        User user = new User(firstName, lastName, email, password);
+        User user = new User(firstName, lastName, email, password, 0);
         userOperations.insert(insertUserCallback(), user);
     }
 
