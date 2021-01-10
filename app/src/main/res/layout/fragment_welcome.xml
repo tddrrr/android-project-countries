@@ -7,22 +7,30 @@
     tools:context=".fragmente.FragmentWelcome">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="@string/hello"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_hello" />
+
 
     <ImageView
         android:id="@+id/iv_hello"
         android:layout_width="0dp"
         android:layout_height="181dp"
-        android:src="@drawable/ic_baseline_adb_24"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/ic_baseline_emoji_people_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/hello"
+        android:textAlignment="center"
+        android:layout_marginTop="40dp"
+        android:textSize="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_hello" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -42,7 +42,7 @@ public class MainMenu extends AppCompatActivity {
     private List<Country> countries = new ArrayList<>();
     private AsyncTaskRunner asyncTaskRunner = new AsyncTaskRunner();
     private SharedPreferences preferences;
-    private static final String URL_COUNTRIES = "https://api.mocki.io/v1/a5ca05cb";
+    private static final String URL_COUNTRIES = "https://api.mocki.io/v1/d27e2a2b";
     private User user;
     TextView info, email;
     @Override
